@@ -19,9 +19,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-          # EXCLUDE MODE (Only turning off specific linters)
+          # Turn off unnecessary linters that cause errors
           VALIDATE_ALL_CODEBASE: false
-
           VALIDATE_CHECKOV: false
           VALIDATE_GITLEAKS: false
           VALIDATE_MARKDOWN: false
@@ -30,5 +29,6 @@ jobs:
           VALIDATE_DOCKERFILE_HADOLINT: false
           VALIDATE_EDITORCONFIG: false
 
-          # Keep only YAML linter enabled
+          # Keep only simple YAML linting ON
           VALIDATE_YAML: true
+
