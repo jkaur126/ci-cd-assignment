@@ -1,37 +1,31 @@
 name: Super-Linter
-
+ 
 on:
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-
+ 
 jobs:
   lint:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+ 
       - name: Run Super-Linter
-        uses: super-linter/super-linter@v6
+        uses: github/super-linter@v7
         env:
+          VALIDATE_ALL_CODEBASE: true
+          DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-          # EXCLUDE mode — disable ALL linters so the workflow will always succeed
-          VALIDATE_ALL_CODEBASE: false
+ 
           VALIDATE_CHECKOV: false
-          VALIDATE_DOCKERFILE_HADOLINT: false
-          VALIDATE_EDITORCONFIG: false
-          VALIDATE_GITLEAKS: false
-          VALIDATE_JAVASCRIPT_ES: false
+          VALIDATE_YAML_PRETTIER: false
           VALIDATE_JSCPD: false
-          VALIDATE_JSON: false
-          VALIDATE_MARKDOWN: false
+          VALIDATE_GITLEAKS: false
           VALIDATE_NATURAL_LANGUAGE: false
-          VALIDATE_PERL: false
-          VALIDATE_PYTHON: false
-          VALIDATE_RUBY: false
-          VALIDATE_XML: false
-          VALIDATE_YAML: false
+          VALIDATE_MARKDOWN_PRETTIER: false
+          VALIDATE_MARKDOWN: false
